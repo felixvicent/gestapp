@@ -19,6 +19,9 @@ class GestApp extends StatelessWidget {
 }
 
 class HomePage extends StatelessWidget {
+  final titleController = TextEditingController();
+  final valueController = TextEditingController();
+
   final _transactions = [
     Transaction(
       id: 't1',
@@ -113,11 +116,13 @@ class HomePage extends StatelessWidget {
                     decoration: InputDecoration(
                       labelText: 'Título',
                     ),
+                    controller: titleController,
                   ),
                   TextField(
                     decoration: InputDecoration(
                       labelText: 'Valor (R\$)',
                     ),
+                    controller: valueController,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -125,7 +130,10 @@ class HomePage extends StatelessWidget {
                       FlatButton(
                         child: Text('Nova Transação'),
                         textColor: Colors.purple,
-                        onPressed: () {},
+                        onPressed: () {
+                          print(titleController.text);
+                          print(valueController.text);
+                        },
                       ),
                     ],
                   )
