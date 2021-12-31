@@ -21,7 +21,7 @@ class _TransactionUserState extends State<TransactionUser> {
       date: DateTime.now(),
     ),
     Transaction(
-      id: 't2',
+      id: 't1',
       title: 'Conta de Luz',
       value: 211.30,
       date: DateTime.now(),
@@ -45,8 +45,8 @@ class _TransactionUserState extends State<TransactionUser> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        TransactionList(_transactions),
         TransactionForm(_addTransaction),
+        TransactionList(_transactions),
       ],
     );
   }
