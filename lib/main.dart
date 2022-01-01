@@ -3,6 +3,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:gestapp/components/chart.dart';
 import 'package:gestapp/components/transaction_form.dart';
 import 'package:gestapp/components/transaction_list.dart';
 import 'package:gestapp/models/transaction.dart';
@@ -107,14 +108,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              width: double.infinity,
-              child: Card(
-                color: Colors.blue,
-                child: Text('Graphic'),
-                elevation: 5,
-              ),
-            ),
+            Chart(),
             TransactionList(_transactions),
           ],
         ),
