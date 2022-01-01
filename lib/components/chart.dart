@@ -1,6 +1,7 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
+import 'package:gestapp/components/chart_bar.dart';
 import 'package:gestapp/models/transaction.dart';
 import 'package:intl/intl.dart';
 
@@ -25,9 +26,6 @@ class Chart extends StatelessWidget {
         }
       }
 
-      print(DateFormat.E().format(weekDay)[0]);
-      print(totalSum);
-
       return {
         'day': DateFormat.E().format(weekDay)[0],
         'value': totalSum,
@@ -37,12 +35,13 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    groupedTransactions;
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),
       child: Row(
-        children: [],
+        children: groupedTransactions.map((transaction) {
+          return ChartBar();
+        }).toList(),
       ),
     );
   }
