@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, sized_box_for_whitespace, unnecessary_cast
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, sized_box_for_whitespace, unnecessary_cast, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
 import 'package:gestapp/components/chart_bar.dart';
