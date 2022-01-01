@@ -19,6 +19,9 @@ class ChartBar extends StatelessWidget {
       children: [
         Text(
           'R\$${value.toStringAsFixed(2)}',
+          style: TextStyle(
+            fontSize: 13,
+          ),
         ),
         SizedBox(height: 5),
         Container(

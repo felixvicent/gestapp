@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, sized_box_for_whitespace
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, sized_box_for_whitespace, unnecessary_cast
 
 import 'package:flutter/material.dart';
 import 'package:gestapp/components/chart_bar.dart';
@@ -33,6 +33,12 @@ class Chart extends StatelessWidget {
     });
   }
 
+  double get _weekTotalValue {
+    return groupedTransactions.fold(0.0, (sum, transaction) {
+      return sum + (transaction['value'] as double);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -43,7 +49,7 @@ class Chart extends StatelessWidget {
           return ChartBar(
             label: transaction['day'].toString(),
             value: transaction['value'] as double,
-            percentage: 0.3,
+            percentage: (transaction['value'] as double) / _weekTotalValue,
           );
         }).toList(),
       ),
