@@ -68,6 +68,18 @@ class _HomePageState extends State<HomePage> {
       value: 211.30,
       date: DateTime.now().subtract(Duration(days: 4)),
     ),
+    Transaction(
+      id: 't2',
+      title: 'Lanche',
+      value: 11.30,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'Cartão de Crédito',
+      value: 211000.30,
+      date: DateTime.now(),
+    ),
   ];
 
   _openTransactionFormModal(context) {
