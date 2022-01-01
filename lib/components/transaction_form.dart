@@ -1,6 +1,7 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, deprecated_member_use, prefer_const_constructors_in_immutables, avoid_unnecessary_containers
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, deprecated_member_use, prefer_const_constructors_in_immutables, avoid_unnecessary_containers, sized_box_for_whitespace, unused_field
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class TransactionForm extends StatefulWidget {
   final void Function(String, double) onSubmit;
@@ -12,19 +13,37 @@ class TransactionForm extends StatefulWidget {
 }
 
 class _TransactionFormState extends State<TransactionForm> {
-  final titleController = TextEditingController();
+  final _titleController = TextEditingController();
+  final _valueController = TextEditingController();
 
-  final valueController = TextEditingController();
+  late DateTime _selectedDate = DateTime.now();
 
   _submitForm() {
-    final title = titleController.text;
-    final value = double.tryParse(valueController.text) ?? 0.0;
+    final title = _titleController.text;
+    final value = double.tryParse(_valueController.text) ?? 0.0;
 
     if (title.isEmpty || value <= 0) {
       return;
     }
 
     widget.onSubmit(title, value);
+  }
+
+  _showDatePicker() {
+    showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2020),
+      lastDate: DateTime.now(),
+    ).then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      }
+
+      setState(() {
+        _selectedDate = pickedDate;
+      });
+    });
   }
 
   @override
@@ -40,7 +59,7 @@ class _TransactionFormState extends State<TransactionForm> {
                 labelText: 'Título',
               ),
               onSubmitted: (_) => _submitForm(),
-              controller: titleController,
+              controller: _titleController,
             ),
             TextField(
               decoration: InputDecoration(
@@ -48,17 +67,21 @@ class _TransactionFormState extends State<TransactionForm> {
               ),
               keyboardType: TextInputType.numberWithOptions(decimal: true),
               onSubmitted: (_) => _submitForm(),
-              controller: valueController,
+              controller: _valueController,
             ),
             Container(
               height: 70,
               child: Row(
                 // ignore: prefer_const_literals_to_create_immutables
                 children: [
-                  Text('Nenhuma data selecionada!'),
+                  Expanded(
+                    child: Text(
+                      DateFormat('dd/MM/y').format(_selectedDate),
+                    ),
+                  ),
                   FlatButton(
                     textColor: Theme.of(context).primaryColor,
-                    onPressed: () {},
+                    onPressed: _showDatePicker,
                     child: Text(
                       'Selecionar Data',
                       style: TextStyle(
