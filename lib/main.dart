@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _getIconButton(IconData icon, VoidCallback fn) {
-    return !Platform.isIOS
+    return Platform.isIOS
         ? GestureDetector(
             onTap: fn,
             child: Icon(icon),
@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
 
     final iconList = Platform.isIOS ? CupertinoIcons.refresh : Icons.list;
     final chartList =
-        !Platform.isIOS ? CupertinoIcons.refresh : Icons.show_chart;
+        Platform.isIOS ? CupertinoIcons.refresh : Icons.show_chart;
 
     final actions = [
       if (isLandscape)
@@ -127,14 +127,14 @@ class _HomePageState extends State<HomePage> {
           },
         ),
       _getIconButton(
-        !Platform.isIOS ? CupertinoIcons.add : Icons.add,
+        Platform.isIOS ? CupertinoIcons.add : Icons.add,
         () {
           _openTransactionFormModal(context);
         },
       ),
     ];
 
-    final dynamic appBar = !Platform.isIOS
+    final dynamic appBar = Platform.isIOS
         ? CupertinoNavigationBar(
             middle: Text('Despesas Pessoais'),
             trailing: Row(
@@ -173,7 +173,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
 
-    return !Platform.isIOS
+    return Platform.isIOS
         ? CupertinoPageScaffold(
             navigationBar: appBar,
             child: pageBody,
@@ -181,7 +181,7 @@ class _HomePageState extends State<HomePage> {
         : Scaffold(
             appBar: appBar,
             body: pageBody,
-            floatingActionButton: !Platform.isIOS
+            floatingActionButton: Platform.isIOS
                 ? Container()
                 : FloatingActionButton(
                     child: Icon(
